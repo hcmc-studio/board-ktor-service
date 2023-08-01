@@ -32,6 +32,13 @@ object ArticleService {
         }
     }
 
+    suspend fun remove(
+        id: Long,
+        transaction: Transaction? = null
+    ) = suspendedTransaction(transaction) {
+        get(id, this)?.delete()
+    }
+
     suspend fun get(
         id: Long,
         transaction: Transaction? = null
